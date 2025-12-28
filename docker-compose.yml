@@ -1,0 +1,17 @@
+services:
+  ddddocr:
+    build: .
+    container_name: ddddocr
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      # 自定义模型目录挂载
+      - ./models:/app/models:ro
+    environment:
+      - TZ=Asia/Shanghai
+      # 路由前缀，可自定义，如 /ocr 或留空
+      - URL_PREFIX=/
+      # worker 进程数量
+      - WORKERS=1
+
